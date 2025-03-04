@@ -1,0 +1,6 @@
+The purpose of this project is to be able to monitor our FRC batteries using RFID tags to track the data from charging and competition.
+
+Main device is a RaspberryPi using RFID tag readers that read RFID tags placed on our batteries. 
+The tag reader will read the tag and then track the progress of the batteries charging rate.
+This information will be sent to a spreadsheet that can be viewed at any time.
+The Raspberry Pi will be able to review that data in order to select which battery should be used for our next match
