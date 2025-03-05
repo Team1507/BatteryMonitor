@@ -10,16 +10,20 @@ class BatteryChecker:
         self.battery = Battery("Battery Checker")
         self.Reader = SimpleMFRC522()
         self.sensorAddress = sensorAddress
-
+        
     def addBattery(self):
-        self.battery.updateCurrentVoltage(self.readVoltage())
+        self.battery.updateVoltage(self.readVoltage())
 
     def batteryBeforeMatch(self):
+        if not self.battery:
+            print("Error: No battery detected!")
+            return
         self.battery.startMatch(self.readVoltage())
-        if self.battery.getCurrentVoltage() < 12:
-            print("Battery is less than 12V do not use!")
 
     def batteryAfterMatch(self):
+        if not self.battery:
+            print("Error: No battery detected!")
+            return
         self.battery.endMatch(self.readVoltage())
 
     def removeBattery(self):
