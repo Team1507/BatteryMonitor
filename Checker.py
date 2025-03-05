@@ -3,19 +3,27 @@
 
 import time
 from mfrc522 import SimpleMFRC522
+from BatteryClass import Battery
 
 class BatteryChecker:
     def __init__(self, sensorAddress):
-        self.BatteryID = None
-        self.currentVoltage = None
+        self.battery = Battery("Battery Checker")
         self.Reader = SimpleMFRC522()
         self.sensorAddress = sensorAddress
 
     def addBattery(self):
-        self.BatteryID = self.Reader.read()
+        self.battery.updateCurrentVoltage(self.readVoltage())
+
+    def batteryBeforeMatch(self):
+        self.battery.startMatch(self.readVoltage())
+        if self.battery.getCurrentVoltage() < 12:
+            print("Battery is less than 12V do not use!")
+
+    def batteryAfterMatch(self):
+        self.battery.endMatch(self.readVoltage())
 
     def removeBattery(self):
-        self.BatteryID = None
+        self.battery = None
         self.currentVoltage = None
 
     def readVoltage(self):
@@ -26,8 +34,7 @@ class BatteryChecker:
             print(f"Error reading sensor {self.sensorAddress}: {e}")
             return None
 
-    def log_battery_data(self):
+    def getBatteryDataLog(self):
         timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
-        data = [timestamp, "Battery Checker", self.BatteryID, self.currentVoltage]
-        sheet.append_row(data)
-        print(f"Logged data: {data}")
+        data = [timestamp, "Battery Checker", self.battery.getBatteryData(), self.currentVoltage]
+        return data

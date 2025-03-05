@@ -1,5 +1,7 @@
+import time
 import smbus2 as smbus
 from mfrc522 import SimpleMFRC522
+from BatteryClass import Battery
 
 class Charger:
     def __init__(self, location, sensorAddress):
@@ -17,32 +19,39 @@ class Charger:
         self.status = 0
 
         #Battery Information
-        self.hasBattery = False
-        self.batteryID = None
+        self.battery = Battery(self.Reader.read(), location)
 
     def addBattery(self):
-        self.hasBattery = True
-        self.batteryID = self.Reader.read()
+        self.battery.startCharging(self.readVoltage())
+        self.status = 1
 
     def getBatteryID(self):
-        return self.batteryID
+        return self.battery.getBatteryData()
     
     def removeBattery(self):
-        self.hasBattery = False
-        self.batteryID = None
+        self.battery.endCharging(self.readVoltage())
         self.status = 0
 
-    def read_voltage(self):
+    def readVoltage(self):
         try:
             self.bus.write_byte(self.sensorAddress, 0x02)  # Register for bus voltage
-            voltage = self.bus.read_word_data(self.sensorAddress, 0x02) * 0.001  # Convert to volts
-            return round(voltage, 2)
+            self.batteryVoltage = self.bus.read_word_data(self.sensorAddress, 0x02) * 0.001  # Convert to volts
+            return round(self.batteryVoltage, 2)
+        except Exception as e:
+            print(f"Error reading sensor {self.sensorAddress}: {e}")
+            return None
+    
+    def readCurrent(self):
+        try:
+            self.bus.write_byte(self.sensorAddress, 0x02)  # Register for bus current
+            self.batteryCurrent = self.bus.read_word_data(self.sensorAddress, 0x02) * 0.001  # Convert to amps
+            return round(self.batteryCurrent, 2)
         except Exception as e:
             print(f"Error reading sensor {self.sensorAddress}: {e}")
             return None
         
-    def is_charging(self, previous_voltage):
-        current_voltage = self.read_voltage()
+    def isCharging(self, previous_voltage):
+        current_voltage = self.readVoltage()
         if current_voltage is None:
             return None  # Unable to read voltage
         

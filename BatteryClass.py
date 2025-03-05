@@ -2,48 +2,55 @@ import time
 
 class Battery:
     def __init__(self, battery_id, slot):
-        self.battery_id = battery_id  # Unique RFID tag ID
+        self.batteryID = battery_id  # Unique RFID tag ID
         self.slot = slot  # Charging station slot number
-        self.start_voltage = None  # Voltage before match
-        self.end_voltage = None  # Voltage after match
-        self.charge_start_voltage = None # Voltage before charging
-        self.charge_end_voltage = None # Voltage after charging
-        self.charge_start_time = None
-        self.charge_end_time = None
-        self.match_start_time = None
-        self.match_end_time = None
+        self.currentVoltage = None
+        self.startVoltage = None  # Voltage before match
+        self.endVoltage = None  # Voltage after match
+        self.chargeStartVoltage = None # Voltage before charging
+        self.chargeEndVoltage = None # Voltage after charging
+        self.chargeStartTime = None
+        self.chargeEndTime = None
+        self.matchStartTime = None
+        self.matchEndTime = None
+
+    def updateCurrentVoltage(self, voltage):
+        self.currentVoltage = voltage
+
+    def getCurrentVoltage(self):
+        return self.currentVoltage
     
-    def start_charging(self, voltage):
-        self.charge_start_voltage = voltage
-        self.charge_start_time = time.strftime("%Y-%m-%d %H:%M:%S")
-        print(f"Battery {self.battery_id} started charging at {self.start_voltage}V on {self.charge_start_time}")
+    def startCharging(self, voltage):
+        self.chargeStartVoltage = voltage
+        self.chargeStartTime = time.strftime("%Y-%m-%d %H:%M:%S")
+        print(f"Battery {self.batteryID} started charging at {self.startVoltage}V on {self.chargeStartTime}")
     
-    def end_charging(self, voltage):
-        self.charge_end_voltage = voltage
-        self.charge_end_time = time.strftime("%Y-%m-%d %H:%M:%S")
-        print(f"Battery {self.battery_id} finished charging at {self.end_voltage}V on {self.charge_end_time}")
+    def endCharging(self, voltage):
+        self.chargeEndVoltage = voltage
+        self.chargeEndTime = time.strftime("%Y-%m-%d %H:%M:%S")
+        print(f"Battery {self.batteryID} finished charging at {self.endVoltage}V on {self.chargeEndTime}")
     
-    def start_match(self, voltage):
-        self.start_voltage = voltage
-        self.match_start_time = time.strftime("%Y-%m-%d %H:%M:%S")
-        print(f"Battery {self.battery_id} started match at {self.start_voltage}V on {self.match_start_time}")
+    def startMatch(self, voltage):
+        self.startVoltage = voltage
+        self.matchStartTime = time.strftime("%Y-%m-%d %H:%M:%S")
+        print(f"Battery {self.batteryID} started match at {self.startVoltage}V on {self.matchStartTime}")
     
-    def end_match(self, voltage):
-        self.end_voltage = voltage
-        self.match_end_time = time.strftime("%Y-%m-%d %H:%M:%S")
-        print(f"Battery {self.battery_id} ended match at {self.end_voltage}V on {self.match_end_time}")
+    def endMatch(self, voltage):
+        self.endVoltage = voltage
+        self.matchEndTime = time.strftime("%Y-%m-%d %H:%M:%S")
+        print(f"Battery {self.batteryID} ended match at {self.endVoltage}V on {self.matchEndTime}")
     
-    def get_battery_data(self):
+    def getBatteryData(self):
         return {
-            "battery_id": self.battery_id,
+            "battery_id": self.batteryID,
             "slot": self.slot,
-            "start_voltage": self.start_voltage,
-            "end_voltage": self.end_voltage,
-            "charge_start_time": self.charge_start_time,
-            "charge_end_time": self.charge_end_time,
-            "match_start_time": self.match_start_time,
-            "match_end_time": self.match_end_time
+            "start_voltage": self.startVoltage,
+            "end_voltage": self.endVoltage,
+            "charge_start_time": self.chargeStartTime,
+            "charge_end_time": self.chargeEndTime,
+            "match_start_time": self.matchStartTime,
+            "match_end_time": self.matchEndTime
         }
     
     def __str__(self):
-        return f"Battery {self.battery_id} | Slot {self.slot} | Start Voltage: {self.start_voltage}V | End Voltage: {self.end_voltage}V"
+        return f"Battery {self.batteryID} | Slot {self.slot} | Start Voltage: {self.startVoltage}V | End Voltage: {self.endVoltage}V"
