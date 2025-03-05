@@ -30,7 +30,6 @@ The Raspberry Pi will be able to review that data in order to select which batte
 ### **3. Voltage Monitoring (For Battery Health Tracking)**
 | **Item**                      | **Quantity** | **Approx. Cost (USD)**  | **Suggested Vendor** |
 |-------------------------------|--------------|-------------------------|----------------------|
-| INA219 Volt & Current Sensor  | 7            | $12.00 each   [$84.00]  | https://www.adafruit.com/product/904  |
 | I2C Multiplexer (TCA9548A)    | 1            | $7.50                   | https://www.adafruit.com/product/2717 |
 | INA260 Volt, Current, Power   | 7            | $9.95 each    [$69.65]  | https://www.adafruit.com/product/4226 |
 | Mini Power Meter Display      | 7            | $24.95 each   [$174.65] | https://www.adafruit.com/product/3624 |
