@@ -5,6 +5,15 @@ import smbus
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
+import ChargingCart
+import Checker
+
+#Setup the Battery Cart
+BatteryCart = ChargingCart()
+
+#Setup the Battery Checker
+BatteryChecker = Checker()
+
 # Initialize RFID reader
 reader = SimpleMFRC522()
 
