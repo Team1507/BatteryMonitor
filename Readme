@@ -22,8 +22,8 @@ The Raspberry Pi will be able to review that data in order to select which batte
 ### **2. RFID System (For Battery Tracking)**
 | **Item**                        | **Quantity** | **Approx. Cost (USD)** | **Suggested Vendor** |
 |---------------------------------|--------------|------------------------|----------------------|
-| MFRC522 RFID Reader             | 7            | $10.89 each  [$76.83]  | https://www.amazon.com/Alinan-MFRC522-Sensor-Arduino-Raspberry/dp/B09PTFGRNB/ref=sr_1_16?adgrpid=1340305238543257&dib=eyJ2IjoiMSJ9.nqUZKS4qM9_92di-whBaTfV1EQD2VHQDBX1pvXCWGFW5zEmRZjw133x21W1QmdLHLOZUpwSSpuxYzkqDu26M2aWLSAr7dFSxr46mxOhvtTgoK-mcahZgiBU3PUv63wQFp0iM9y8ZlfFqmRcG2I0-XTPBetNfH0XZCfrUNjPgl52Qif6ua-s_7N2U-Xde5GnwO_NaCPIvMWEfbk2Z8qb0nSQvcZTQ4XTxtQy9g1aDEeo.X_7AbjDL8mCXjMV3mg4rq9NOYYT6QcGtoe4kziOcp88&dib_tag=se&hvadid=83769292363110&hvbmt=be&hvdev=c&hvlocphy=105936&hvnetw=o&hvqmt=e&hvtargid=kwd-83769424262471%3Aloc-190&hydadcr=19107_13351710&keywords=rc522+rfid+module&mcid=180d1830d547335fac0380dc86665b87&msclkid=21b1f926a6dc10c1ac609ee1f94ef868&qid=1741119486&sr=8-16 |
-| RFID Tags (13.56MHz)            | 6+           | $1.50 each   [$14.98]  | https://www.amazon.com/YARONGTECH-50pcs-MIFARE-Classic-adhesive-Sticker/dp/B01LZYOR7P/ref=sr_1_2_sspa?crid=2NDWT3GHVQQAN&dib=eyJ2IjoiMSJ9.Ea46xeJm4K_ypj_WF-qESZQY9HJnJW_PmHLMKNRIM4YRBtXex_AUZhwqbMc1OsBAbnQFapu0q6g4CnolHNKeJH5HPAzt96a7560xP73-lyhmp14T_dfngLGYB2x-qvxVNa3MoqFmrEVpx1J9EuwJMicqyrVSKaCSqaEzG06f2KXMSHkG-Pj-MM_4uhuliG6hpKiZwXlfLq4KZduTgvOfFk2CVk_ZQxxYaE_ZZNyKED0.m1fQgQKN65jJILifSxOIZM5LzuFPfnKDIvygbDI8d2s&dib_tag=se&keywords=RFID%2BTags%2B(13.56MHz)&qid=1741188192&sprefix=rfid%2Btags%2B13.56mhz%2B%2Caps%2C162&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1 |
+| MFRC522 RFID Reader             | 7            | $10.89 each  [$76.83]  | https://a.co/d/gUznAqr |
+| RFID Tags (13.56MHz) 50pcs      | 1            | $14.98                 | https://a.co/d/dpRX3hv |
 
 ---
 
@@ -40,5 +40,5 @@ The Raspberry Pi will be able to review that data in order to select which batte
 ### **4. Charging Station Components**
 | **Item**                        | **Quantity** |  **Approx. Cost (USD)**   | **Suggested Vendor** |
 |---------------------------------|--------------|---------------------------|----------------------|
-| Smart Battery Charger (6-bank)  | 2            | $244.00 (Currently have)  | https://www.andymark.com/products/frc-battery-charger?via=Z2lkOi8vYW5keW1hcmsvV29ya2FyZWE6OkNhdGFsb2c6OkNhdGVnb3J5LzViYjYxODJhYmM2ZjZkNmRlMWU2OWY1Mg&Bank=3%20Bank&quantity=1&Connectors=SB50%20Connectors |
+| Smart Battery Charger (6-bank)  | 2            | $244.00 (Currently have)  | https://www.andymark.com/products/frc-battery-charger |
 
