@@ -15,7 +15,7 @@ teamChecker = BatteryChecker()
 
 # Initialize I2C bus for voltage sensors
 I2C_BUS = 1  # Default I2C bus on Raspberry Pi
-sensors = [0x40, 0x41, 0x42, 0x43, 0x44, 0x45]  # I2C addresses of INA219 sensors
+sensors = [0x40, 0x41, 0x42, 0x43, 0x44, 0x45]  # I2C addresses of INA260 sensors
 bus = smbus.SMBus(I2C_BUS)
 
 # Google Sheets Setup

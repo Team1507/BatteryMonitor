@@ -1,7 +1,6 @@
 import time
 import logging
 import smbus2 as smbus
-from mfrc522 import SimpleMFRC522
 from BatteryClass import Battery
 
 class Charger:
@@ -10,7 +9,6 @@ class Charger:
         self.location = location
         self.sensorAddress = sensorAddress
         self.bus = smbus.SMBus(1)  # Default I2C bus
-        self.Reader = SimpleMFRC522()
 
         #status for charging battery
         # 0 => Charger not active
@@ -19,31 +17,28 @@ class Charger:
         # 3 => Charger has battery, completed charging
         self.status = 0
 
-        #Battery Information
-        self.battery = Battery(self.Reader.read(), location)
-
-    def addBattery(self):
-        battery_id, _ = self.Reader.read()
-        if battery_id:
-            self.battery = Battery(battery_id, self.location)
-            self.battery.startCharging(self.readVoltage())
-            self.status = 1
-        else:
-            print("No battery detected.")
-
+    def addBattery(self, id):
+        self.battery = Battery(id, self.location)
+        self.battery.startCharging(self.readVoltage())
+        self.status = 1
 
     def getBatteryID(self):
-        return self.battery.getBatteryData()
+        return self.battery.getBatteryData()["battery_id"]
     
     def removeBattery(self):
         self.battery.endCharging(self.readVoltage())
+        self.battery = None
         self.status = 0
+
+    def getStatus(self):
+        return self.status
 
     def readVoltage(self):
         try:
             self.bus.write_byte(self.sensorAddress, 0x02)  # Register for bus voltage
             raw_data = self.bus.read_word_data(self.sensorAddress, 0x02)
-            return round(raw_data * 0.001, 2)
+            self.battery.updateVoltage(round(raw_data * 0.001, 2))
+            return self.battery.getCurrentVoltage()
         except Exception as e:
             logging.error(f"Voltage read error at {self.sensorAddress}: {e}")
             return None
