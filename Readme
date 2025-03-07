@@ -13,7 +13,7 @@ The Raspberry Pi will be able to review that data in order to select which batte
 ### **1. Core Components**
 | **Item**                 | **Quantity** | **Approx. Cost (USD)** | **Suggested Vendor** |
 |--------------------------|--------------|------------------------|----------------------|
-| Raspberry Pi 4 (4GB)     | 1            | $55.00                 | https://www.canakit.com/raspberry-pi-4-4gb.html |
+| Raspberry Pi 4 (4GB)     | 1            | $55.00                 | https://www.adafruit.com/product/4296 |
 | MicroSD Card (32GB+)     | 1            | $10.00                 | [Amazon]             |
 | Power Supply (5V 3A)     | 1            | $10.00                 | [Amazon]             |
 
