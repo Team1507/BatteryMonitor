@@ -62,7 +62,7 @@ class Charger:
             return True
         elif current_voltage <= previous_voltage - voltage_delta:
             self.status = 3 if self.status == 2 else 1
-            return False
+        return False
 
 def get_timestamp():
     return time.strftime("%Y-%m-%d %H:%M:%S")
