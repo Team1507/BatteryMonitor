@@ -53,14 +53,14 @@ class Charger:
             return None
 
     def isCharging(self, previous_voltage):
+        voltage_delta = 0.05 # Small threshold to account for fluctuations
         current_voltage = self.readVoltage()
         if current_voltage is None or previous_voltage is None:
             return None  # Unable to determine
-
-        if current_voltage > previous_voltage + 0.05:  # Small threshold to account for fluctuations
+        if current_voltage > previous_voltage + voltage_delta:  
             self.status = 2
             return True
-        elif current_voltage <= previous_voltage:
+        elif current_voltage <= previous_voltage - voltage_delta:
             self.status = 3 if self.status == 2 else 1
             return False
 
