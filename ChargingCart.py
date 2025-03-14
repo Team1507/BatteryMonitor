@@ -22,7 +22,7 @@ class BatteryCart:
 
     def removeBattery(self, location):
         self.Chargers[location].removeBattery()
-        if self.Chargers[location].getStatus() == 0:
+        if self.Chargers[location].getStatus() == BatteryStatus.NOT_ACTIVE:
             return True
         else: return False
 

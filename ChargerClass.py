@@ -2,25 +2,31 @@ import time
 import logging
 import smbus2 as smbus
 from BatteryClass import Battery
+from enum import Enum
 
 class Charger:
-    def __init__(self, location, sensorAddress):
-        #Charger Information
-        self.location = location
-        self.sensorAddress = sensorAddress
-        self.bus = smbus.SMBus(1)  # Default I2C bus
-
+    def class BatteryStatus(Enum):
         #status for charging battery
         # 0 => Charger not active
         # 1 => Charger has battery, but not charging
         # 2 => Charger has battery, is charging
         # 3 => Charger has battery, completed charging
-        self.status = 0
+        NOT_ACTIVE = 0
+        NOT_CHARGING = 1
+        CHARGING = 2
+        COMPLETED_CHARGING = 3
+
+    def __init__(self, location, sensorAddress):
+        #Charger Information
+        self.location = location
+        self.sensorAddress = sensorAddress
+        self.bus = smbus.SMBus(1)  # Default I2C bus
+        self.status = BatteryStatus.NOT_ACTIVE
 
     def addBattery(self, id):
         self.battery = Battery(id, self.location)
         self.battery.startCharging(self.readVoltage())
-        self.status = 1
+        self.status = BatteryStatus.NOT_CHARGING
 
     def getBatteryID(self):
         return self.battery.getBatteryData()["battery_id"]
@@ -28,7 +34,7 @@ class Charger:
     def removeBattery(self):
         self.battery.endCharging(self.readVoltage())
         self.battery = None
-        self.status = 0
+        self.status = BatteryStatus.NOT_ACTIVE
 
     def getStatus(self):
         return self.status
@@ -58,10 +64,10 @@ class Charger:
         if current_voltage is None or previous_voltage is None:
             return None  # Unable to determine
         if current_voltage > previous_voltage + voltage_delta:  
-            self.status = 2
+            self.status = BatteryStatus.CHARGING
             return True
         elif current_voltage <= previous_voltage - voltage_delta:
-            self.status = 3 if self.status == 2 else 1
+            self.status = BatteryStatus.COMPLETED_CHARGING if self.status == BatteryStatus.CHARGING else BatteryStatus.NOT_CHARGING
         return False
 
 def get_timestamp():
