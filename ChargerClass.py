@@ -1,21 +1,9 @@
 import time
 import logging
 import smbus2 as smbus
-from BatteryClass import Battery
-from enum import Enum
+from BatteryClass import Battery, BatteryStatus
 
 class Charger:
-    def class BatteryStatus(Enum):
-        #status for charging battery
-        # 0 => Charger not active
-        # 1 => Charger has battery, but not charging
-        # 2 => Charger has battery, is charging
-        # 3 => Charger has battery, completed charging
-        NOT_ACTIVE = 0
-        NOT_CHARGING = 1
-        CHARGING = 2
-        COMPLETED_CHARGING = 3
-
     def __init__(self, location, sensorAddress):
         #Charger Information
         self.location = location

@@ -1,4 +1,17 @@
 import time
+from enum import Enum
+
+class BatteryStatus(Enum):
+    #status for charging battery
+    # 0 => Charger not active
+    # 1 => Charger has battery, but not charging
+    # 2 => Charger has battery, is charging
+    # 3 => Charger has battery, completed charging
+    NOT_ACTIVE = 0
+    NOT_CHARGING = 1
+    CHARGING = 2
+    COMPLETED_CHARGING = 3
+    CHECKING_BATTERY = 4
 
 class Battery:
     def __init__(self, battery_id, slot):

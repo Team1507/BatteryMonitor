@@ -1,6 +1,7 @@
 #Checker cart has 6 slots to charge 6 batteries at a time
 
 from ChargerClass import Charger
+from BatteryClass import BatteryStatus
 from mfrc522 import SimpleMFRC522
 
 class BatteryCart:
